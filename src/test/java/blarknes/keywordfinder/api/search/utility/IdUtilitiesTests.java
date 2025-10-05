@@ -1,4 +1,4 @@
-package blarknes.keywordfinder.api.search.utility;
+package ghastlith.keywordfinder.api.search.utility;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -9,7 +9,7 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-import blarknes.keywordfinder.api.search.model.SearchInformation;
+import ghastlith.keywordfinder.api.search.model.SearchInformation;
 import lombok.val;
 
 public class IdUtilitiesTests {

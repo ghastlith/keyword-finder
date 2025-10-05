@@ -1,4 +1,4 @@
-package blarknes.keywordfinder.http;
+package ghastlith.keywordfinder.http;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
@@ -14,7 +14,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import blarknes.keywordfinder.api.search.exception.HttpErrorResponseException;
+import ghastlith.keywordfinder.api.search.exception.HttpErrorResponseException;
 import lombok.val;
 
 @SuppressWarnings({"rawtypes", "unchecked"})

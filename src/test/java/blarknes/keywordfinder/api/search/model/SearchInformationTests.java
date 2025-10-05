@@ -1,4 +1,4 @@
-package blarknes.keywordfinder.api.search.model;
+package ghastlith.keywordfinder.api.search.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

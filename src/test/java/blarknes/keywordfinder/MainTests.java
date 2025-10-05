@@ -1,4 +1,4 @@
-package blarknes.keywordfinder;
+package ghastlith.keywordfinder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -15,8 +15,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.jayway.jsonpath.JsonPath;
 
-import blarknes.keywordfinder.api.healthcheck.HealthcheckController;
-import blarknes.keywordfinder.api.search.SearchController;
+import ghastlith.keywordfinder.api.healthcheck.HealthcheckController;
+import ghastlith.keywordfinder.api.search.SearchController;
 import lombok.val;
 import lombok.extern.apachecommons.CommonsLog;
 

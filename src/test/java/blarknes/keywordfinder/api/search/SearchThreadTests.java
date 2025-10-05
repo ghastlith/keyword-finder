@@ -1,4 +1,4 @@
-package blarknes.keywordfinder.api.search;
+package ghastlith.keywordfinder.api.search;
 
 import static java.util.Collections.emptyList;
 import static org.mockito.ArgumentMatchers.any;
@@ -13,8 +13,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import blarknes.keywordfinder.api.search.model.SearchInformation;
-import blarknes.keywordfinder.http.HttpRequestSender;
+import ghastlith.keywordfinder.api.search.model.SearchInformation;
+import ghastlith.keywordfinder.http.HttpRequestSender;
 import lombok.val;
 
 public class SearchThreadTests {

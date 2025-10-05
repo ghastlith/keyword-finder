@@ -1,4 +1,4 @@
-package blarknes.keywordfinder.api.search;
+package ghastlith.keywordfinder.api.search;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -10,8 +10,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.jupiter.api.Test;
 
-import blarknes.keywordfinder.api.search.model.SearchInformation;
-import blarknes.keywordfinder.http.HttpRequestSender;
+import ghastlith.keywordfinder.api.search.model.SearchInformation;
+import ghastlith.keywordfinder.http.HttpRequestSender;
 import lombok.val;
 
 public class ThreadManagerTests {

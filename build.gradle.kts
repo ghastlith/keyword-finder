@@ -4,7 +4,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.7"
 }
 
-group = "blarknes"
+group = "ghastlith"
 version = "3.0.0"
 
 repositories {
