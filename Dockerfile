@@ -1,15 +1,21 @@
 # build
-FROM maven:3.8.8-eclipse-temurin-21-alpine AS build
+FROM gradle:8.10.1-jdk21 AS build
 
-COPY src /home/app/src
-COPY pom.xml /home/app
+WORKDIR /usr/app
+COPY . .
 
-RUN mvn -f /home/app/pom.xml clean package
+RUN gradle build
 
 # run
 FROM openjdk:21
 
-COPY --from=build /home/app/target/keyword-finder-2.0.jar /bin/keywordfinder.jar
+ENV JAR_NAME=keyword-finder-3.0.0.jar
+ENV APP_HOME=/usr/app
 
+WORKDIR $APP_HOME
+COPY --from=build $APP_HOME .
+
+# run
+SHELL [ "/bin/bash", "-c" ]
 EXPOSE 8080
-ENTRYPOINT [ "java", "-jar", "/bin/keywordfinder.jar" ]
+ENTRYPOINT exec java -jar $APP_HOME/build/libs/$JAR_NAME

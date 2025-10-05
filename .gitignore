@@ -1,16 +1,13 @@
 # generated
 target/
 *.class
-
-# maven
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn
+HELP.md
+.gradle
+gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
 
 # sts
 .apt_generated
@@ -20,16 +17,18 @@ buildNumber.properties
 .settings
 .springBeans
 .sts4-cache
-
-# information
-HELP.md
-*.log
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
 
 # intellij
 .idea
 *.iws
 *.iml
 *.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
 
 # netbeans
 /nbproject/private/
@@ -37,9 +36,6 @@ HELP.md
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
 # vscode
 .vscode/
