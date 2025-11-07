@@ -1,4 +1,4 @@
-package ghastlith.keywordfinder.api.search.exception;
+package ghastlith.keywordfinder.http.exception;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 

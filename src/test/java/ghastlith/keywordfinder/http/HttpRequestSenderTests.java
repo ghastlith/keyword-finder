@@ -14,7 +14,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ghastlith.keywordfinder.api.search.exception.HttpErrorResponseException;
+import ghastlith.keywordfinder.http.exception.HttpErrorResponseException;
 import lombok.val;
 
 @SuppressWarnings({"rawtypes", "unchecked"})

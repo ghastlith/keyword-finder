@@ -13,8 +13,8 @@ import java.util.stream.Stream;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
-import ghastlith.keywordfinder.api.search.exception.HttpErrorResponseException;
-import ghastlith.keywordfinder.api.search.exception.InvalidURLException;
+import ghastlith.keywordfinder.http.exception.HttpErrorResponseException;
+import ghastlith.keywordfinder.http.exception.InvalidURLException;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 

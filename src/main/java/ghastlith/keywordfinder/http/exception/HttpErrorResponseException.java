@@ -1,4 +1,4 @@
-package ghastlith.keywordfinder.api.search.exception;
+package ghastlith.keywordfinder.http.exception;
 
 /**
  * {@link HttpErrorResponseException} is thrown when an HTTP Request returned
