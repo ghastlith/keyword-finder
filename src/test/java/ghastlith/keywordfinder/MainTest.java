@@ -23,7 +23,7 @@ import lombok.extern.apachecommons.CommonsLog;
 @SpringBootTest
 @AutoConfigureMockMvc
 @CommonsLog
-public class MainTests {
+public class MainTest {
 
     @Autowired
     private HealthcheckController healthcheckController;

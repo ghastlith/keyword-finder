@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import ghastlith.keywordfinder.api.search.model.SearchInformation;
 import lombok.val;
 
-public class IdUtilitiesTests {
+public class IdUtilitiesTest {
 
     private static final String ID_1 = "05GNJVHm";
     private static final String ID_2 = "CO5ajf5b";

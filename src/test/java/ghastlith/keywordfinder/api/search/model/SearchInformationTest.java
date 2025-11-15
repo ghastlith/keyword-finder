@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import lombok.val;
 
-public class SearchInformationTests {
+public class SearchInformationTest {
 
     private static final String ID = "05GNJVHm";
     private static final String KEYWORD = "magic";

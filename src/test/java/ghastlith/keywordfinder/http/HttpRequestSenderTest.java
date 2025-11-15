@@ -17,8 +17,8 @@ import org.junit.jupiter.api.Test;
 import ghastlith.keywordfinder.http.exception.HttpErrorResponseException;
 import lombok.val;
 
-@SuppressWarnings({"rawtypes", "unchecked"})
-public class HttpRequestSenderTests {
+@SuppressWarnings({ "rawtypes", "unchecked" })
+public class HttpRequestSenderTest {
 
     private final HttpClient mockHttpClient = mock(HttpClient.class);
     private final HttpResponse mockHttpResponse = mock(HttpResponse.class);

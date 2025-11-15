@@ -14,7 +14,7 @@ import ghastlith.keywordfinder.api.search.model.SearchInformation;
 import ghastlith.keywordfinder.http.HttpRequestSender;
 import lombok.val;
 
-public class ThreadManagerTests {
+public class ThreadManagerTest {
 
     private final SearchInformation mockInformation = mock(SearchInformation.class);
     private final ExecutorService mockExecutor = mock(ExecutorService.class);
