@@ -1,6 +1,6 @@
 # keyword-finder
 
-The focus of keyword-finder is, as the name say, look for specific **keywords** on a provided **website** an its associated **subdomains**.
+The focus of keyword-finder is, as the name says, look for specific **keywords** on a provided **website** an its associated **subdomains**.
 
 ## running in docker
 
@@ -10,7 +10,7 @@ To run the application in Docker, you simply build the image.
 docker build . -t keywordfinder
 ```
 
-Then run the container in the default spring boot port.
+Then run the container at the default spring boot port.
 
 ```sh
 docker run -p 8080:8080 --rm keywordfinder
@@ -18,13 +18,13 @@ docker run -p 8080:8080 --rm keywordfinder
 
 ## how it works
 
-At present, the application consists of two distinct Controllers: **Healthcheck** and **Search**.
+Currently the application consists of two distinct Controllers: **Healthcheck** and **Search**.
 
 The sole objective of the Healthcheck Controller is to provide a status on the Application's operational state. It achieves this by simply returning a straightforward `200 OK` response to any incoming requests, confirming that the Application is running.
 
 Within the **Search** Controller is where the _Magic_ happens. It's where the two main functionalities are implemented: schedule and display.
 
-The **schedule** assumes the responsibility of asynchronously search for the desired keyword and any new subdomains present in anchor tags found within the HTML of the provided website. For each new encountered subdomain, the process is repeated, recording every domain passed through and if the keyword was found or not.
+The **schedule** assumes the responsibility of asynchronously searching for the desired keyword and any new subdomains present in anchor tags found within the HTML of the provided website. For each newly encountered subdomain, the process is repeated, recording every domain passed through and if the keyword was found or not.
 
 The **display** takes charge of presenting to the user a report of all searches made while the application was running, as well as, detailed information of any search made.
 
@@ -56,7 +56,7 @@ Body:
 ### response
 
 ```http
-201 CREATED
+201 Created
 Content-Type: application/json
 Body:
 {
@@ -89,7 +89,7 @@ Body:
 
 ### request
 
-`id` must refer to an existent id.
+`id` must refer to an existing id.
 
 ```http
 GET /search/{{id}} HTTP/1.1
@@ -108,7 +108,7 @@ Body:
   "keyword": "magic",
   "baseurl": "https://magic.wizards.com/en/news",
   "status": "running",
-  "looked": 1,
+  "looked": 4,
   "found": 2,
   "urls": [
     "https://magic.wizards.com/en/news",
@@ -158,15 +158,15 @@ Body:
       "keyword": "magic",
       "baseurl": "https://magic.wizards.com/en/news",
       "status": "done",
-      "looked": 1,
-      "found": 44
+      "looked": 44,
+      "found": 4
     },
     {
       "id": "594epjVV",
       "keyword": "magic",
       "baseurl": "https://magic.wizards.com/en/news",
       "status": "runnning",
-      "looked": 1,
+      "looked": 4,
       "found": 4
     }
   ]
