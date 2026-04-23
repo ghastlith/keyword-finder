@@ -25,7 +25,7 @@ public class MethodArgumentNotValidExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(BAD_REQUEST)
     @ResponseBody
-    private ErrorRequestResponse handler(MethodArgumentNotValidException exception, HttpServletRequest request) {
+    private ErrorResponse handler(MethodArgumentNotValidException exception, HttpServletRequest request) {
         val timestamp = now();
         val status = BAD_REQUEST.value();
         val error = BAD_REQUEST.getReasonPhrase();
@@ -36,7 +36,7 @@ public class MethodArgumentNotValidExceptionHandler {
             .collect(toList());
         val path = request.getRequestURI();
 
-        return ErrorRequestResponse.builder()
+        return ErrorResponse.builder()
             .timestamp(timestamp)
             .status(status)
             .error(error)

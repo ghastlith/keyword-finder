@@ -10,7 +10,7 @@ import lombok.Builder;
  * later be formatted in a pattern that matches the one used by Spring.
  */
 @Builder
-public record ErrorRequestResponse(
+public record ErrorResponse(
     Instant timestamp,
     Integer status,
     String error,
