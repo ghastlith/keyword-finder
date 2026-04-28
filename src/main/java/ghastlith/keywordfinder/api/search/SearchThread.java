@@ -34,7 +34,7 @@ public class SearchThread implements Runnable {
     var found = false;
 
     for (final var line : lines) {
-      found = found ? true : searchForKeyword(line);
+      found = found || searchForKeyword(line);
       searchForNewUrls(line);
     }
   }
