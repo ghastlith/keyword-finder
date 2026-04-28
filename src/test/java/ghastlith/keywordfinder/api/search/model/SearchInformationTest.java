@@ -105,4 +105,26 @@ public class SearchInformationTest {
     assertEquals(expectedUrls, urls);
   }
 
+  @Test
+  void toLogMessage_shouldGenerateLogMessageCorrectly() {
+    // given
+    final var searchInformation = new SearchInformation(ID, KEYWORD, BASEURL);
+
+    final var url1 = BASEURL + "/page1";
+    final var url2 = BASEURL + "/page2";
+    final var url3 = BASEURL + "/page3";
+
+    searchInformation.getUrls().put(url3, true);
+    searchInformation.getUrls().put(url2, false);
+    searchInformation.getUrls().put(url1, true);
+
+    final var expectedMessage = String.format("Search %s found %s in 2 url(s)", ID, KEYWORD);
+
+    // when
+    final var message = searchInformation.toLogMessage();
+
+    // then
+    assertEquals(expectedMessage, message);
+  }
+
 }
