@@ -25,14 +25,9 @@ import lombok.extern.apachecommons.CommonsLog;
 @CommonsLog
 public class MainTest {
 
-    @Autowired
-    private HealthcheckController healthcheckController;
-
-    @Autowired
-    private SearchController searchController;
-
-    @Autowired
-    private MockMvc mockMvc;
+    @Autowired private HealthcheckController healthcheckController;
+    @Autowired private SearchController searchController;
+    @Autowired private MockMvc mockMvc;
 
     @Test
     void sanityCheck() {
