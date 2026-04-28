@@ -39,3 +39,7 @@ out/
 
 # vscode
 .vscode/
+
+# ignore
+.ignore/
+*.ignore.*
