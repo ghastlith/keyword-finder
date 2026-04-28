@@ -14,56 +14,70 @@ import lombok.Getter;
 @Getter
 public class SearchInformation {
 
-    private String id;
-    private String keyword;
-    private String baseurl;
-    private Boolean done;
-    private Map<String, Boolean> urls;
+  private String id;
+  private String keyword;
+  private String baseurl;
+  private Boolean done;
+  private Map<String, Boolean> urls;
 
-    /**
-     * Builds a new SearchInformation object based on the user's input.
-     *
-     * @param id      the generated ID
-     * @param keyword the word to be searched
-     * @param baseurl the base url of the website
-     */
-    public SearchInformation(final String id, final String keyword, final String baseurl) {
-        this.id = id;
-        this.keyword = keyword;
-        this.baseurl = baseurl;
-        this.done = false;
-        this.urls = new ConcurrentHashMap<>();
-    }
+  private static final String SEARCH_INFORMATION_LOG_TEMPLATE = "Search %s found %s in %d url(s)";
 
-    /**
-     * Converts the search status to a user readable string.
-     *
-     * @return the search status converted to a string
-     */
-    public String getDone() {
-        return this.done ? "done" : "running";
-    }
+  /**
+   * Builds a new SearchInformation object based on the user's input.
+   *
+   * @param id      the generated ID
+   * @param keyword the word to be searched
+   * @param baseurl the base url of the website
+   */
+  public SearchInformation(final String id, final String keyword, final String baseurl) {
+    this.id = id;
+    this.keyword = keyword;
+    this.baseurl = baseurl;
+    this.done = false;
+    this.urls = new ConcurrentHashMap<>();
+  }
 
-    /**
-     * Updates the search status to done.
-     */
-    public void markAsDone() {
-        this.done = true;
-    }
+  /**
+   * Converts the search status to a user readable string.
+   *
+   * @return The search status converted to a string.
+   */
+  public String getDone() {
+    return this.done ? "done" : "running";
+  }
 
-    /**
-     * Filters every searched url to only those in which the word was found and
-     * convert it to a sorted list.
-     *
-     * @return a sorted list containing urls
-     */
-    public List<String> getUrlsKeywordFoundList() {
-        return this.urls.entrySet()
-            .stream()
-            .filter(Map.Entry::getValue)
-            .map(Map.Entry::getKey)
-            .sorted()
-            .collect(toUnmodifiableList());
-    }
+  /**
+   * Updates the search status to done.
+   */
+  public void markAsDone() {
+    this.done = true;
+  }
+
+  /**
+   * Filters every searched url to only those in which the word was found and
+   * convert it to a sorted list.
+   *
+   * @return A sorted list containing urls.
+   */
+  public List<String> getUrlsKeywordFoundList() {
+    return this.urls.entrySet()
+        .stream()
+        .filter(Map.Entry::getValue)
+        .map(Map.Entry::getKey)
+        .sorted()
+        .collect(toUnmodifiableList());
+  }
+
+  /**
+   * Generate a formatted log message based on finished search object attributes.
+   *
+   * @return The formatted log string message.
+   */
+  public String toLogMessage() {
+    final var quantity = getUrlsKeywordFoundList().size();
+    final var message = String.format(SEARCH_INFORMATION_LOG_TEMPLATE, this.id, this.keyword, quantity);
+
+    return message;
+  }
 
 }

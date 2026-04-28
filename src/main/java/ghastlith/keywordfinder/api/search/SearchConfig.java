@@ -11,14 +11,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SearchConfig {
 
-    @Bean
-    ExecutorService executorService(@Value("${thread.pool.size}") int size) {
-        return Executors.newFixedThreadPool(size);
-    }
+  @Bean
+  ExecutorService executorService(@Value("${thread.pool.size}") int size) {
+    return Executors.newFixedThreadPool(size);
+  }
 
-    @Bean
-    AtomicInteger atomicInteger() {
-        return new AtomicInteger(0);
-    }
+  @Bean
+  AtomicInteger atomicInteger() {
+    return new AtomicInteger(0);
+  }
 
 }

@@ -10,79 +10,78 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 import ghastlith.keywordfinder.api.search.model.SearchInformation;
-import lombok.val;
 
 public class IdUtilitiesTest {
 
-    private static final String ID_1 = "05GNJVHm";
-    private static final String ID_2 = "CO5ajf5b";
-    private static final String KEYWORD = "magic";
-    private static final String BASEURL = "baseurl";
+  private static final String ID_1 = "05GNJVHm";
+  private static final String ID_2 = "CO5ajf5b";
+  private static final String KEYWORD = "magic";
+  private static final String BASEURL = "baseurl";
 
-    private final SearchInformation information = new SearchInformation(ID_1, KEYWORD, BASEURL);
+  private final SearchInformation information = new SearchInformation(ID_1, KEYWORD, BASEURL);
 
-    @Test
-    void generateNewId_shouldReturnNewValidUniqueId() {
-        // given
-        val searches = new HashMap<String, SearchInformation>();
+  @Test
+  void generateNewId_shouldReturnNewValidUniqueId() {
+    // given
+    final var searches = new HashMap<String, SearchInformation>();
 
-        // when
-        val generatedId = IdUtilities.generateNewId(searches);
+    // when
+    final var generatedId = IdUtilities.generateNewId(searches);
 
-        // then
-        assertThat(generatedId).isNotNull();
-        assertThat(generatedId).isNotBlank();
-    }
+    // then
+    assertThat(generatedId).isNotNull();
+    assertThat(generatedId).isNotBlank();
+  }
 
-    @Test
-    void generateNewId_shouldReturnNewUniqueIdWhenMapIsNull() {
-        // given
-        Map<String, SearchInformation> searches = null;
+  @Test
+  void generateNewId_shouldReturnNewUniqueIdWhenMapIsNull() {
+    // given
+    Map<String, SearchInformation> searches = null;
 
-        // when
-        val generatedId = IdUtilities.generateNewId(searches);
+    // when
+    final var generatedId = IdUtilities.generateNewId(searches);
 
-        // then
-        assertThat(generatedId).isNotNull();
-        assertThat(generatedId).isNotBlank();
-    }
+    // then
+    assertThat(generatedId).isNotNull();
+    assertThat(generatedId).isNotBlank();
+  }
 
-    @Test
-    void idExists_shouldReturnTrueWhenMapContainsId() {
-        // given
-        val searches = new HashMap<String, SearchInformation>();
-        searches.put(ID_1, this.information);
+  @Test
+  void idExists_shouldReturnTrueWhenMapContainsId() {
+    // given
+    final var searches = new HashMap<String, SearchInformation>();
+    searches.put(ID_1, this.information);
 
-        // when
-        val result = IdUtilities.idExists(searches, ID_1);
+    // when
+    final var result = IdUtilities.idExists(searches, ID_1);
 
-        // then
-        assertTrue(result);
-    }
+    // then
+    assertTrue(result);
+  }
 
-    @Test
-    void idExists_shouldReturnFalseWhenMapDoesNotContainId() {
-        // given
-        val searches = new HashMap<String, SearchInformation>();
-        searches.put(ID_1, information);
+  @Test
+  void idExists_shouldReturnFalseWhenMapDoesNotContainId() {
+    // given
+    final var searches = new HashMap<String, SearchInformation>();
+    searches.put(ID_1, information);
 
-        // when
-        val result = IdUtilities.idExists(searches, ID_2);
+    // when
+    final var result = IdUtilities.idExists(searches, ID_2);
 
-        // then
-        assertFalse(result);
-    }
+    // then
+    assertFalse(result);
+  }
 
-    @Test
-    void idExists_shouldReturnFalseWhenMapIsNull() {
-        // given
-        Map<String, SearchInformation> searches = null;
+  @Test
+  void idExists_shouldReturnFalseWhenMapIsNull() {
+    // given
+    Map<String, SearchInformation> searches = null;
 
-        // when
-        val result = IdUtilities.idExists(searches, ID_1);
+    // when
+    final var result = IdUtilities.idExists(searches, ID_1);
 
-        // then
-        assertFalse(result);
-    }
+    // then
+    assertFalse(result);
+  }
 
 }

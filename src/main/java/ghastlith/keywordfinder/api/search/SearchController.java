@@ -26,25 +26,25 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SearchController {
 
-    private final SearchService searchService;
+  private final SearchService searchService;
 
-    @PostMapping({ "", "/" })
-    @ResponseStatus(CREATED)
-    @ResponseBody
-    private NewSearchResponse newSearch(@Valid @RequestBody SearchRequestBody body) {
-        return searchService.newSearch(body);
-    }
+  @PostMapping({ "", "/" })
+  @ResponseStatus(CREATED)
+  @ResponseBody
+  private NewSearchResponse newSearch(@Valid @RequestBody SearchRequestBody body) {
+    return searchService.newSearch(body);
+  }
 
-    @GetMapping({ "", "/" })
-    @ResponseBody
-    private ListDisplayResponse listSearches() {
-        return searchService.listSearches();
-    }
+  @GetMapping({ "", "/" })
+  @ResponseBody
+  private ListDisplayResponse listSearches() {
+    return searchService.listSearches();
+  }
 
-    @GetMapping("/{id}")
-    @ResponseBody
-    private SingleDisplayResponse displaySearch(@PathVariable String id) {
-        return searchService.displaySearch(id);
-    }
+  @GetMapping("/{id}")
+  @ResponseBody
+  private SingleDisplayResponse displaySearch(@PathVariable String id) {
+    return searchService.displaySearch(id);
+  }
 
 }

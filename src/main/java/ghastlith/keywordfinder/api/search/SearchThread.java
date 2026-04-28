@@ -9,74 +9,73 @@ import java.util.regex.Pattern;
 import ghastlith.keywordfinder.api.search.model.SearchInformation;
 import ghastlith.keywordfinder.http.HttpRequestSender;
 import lombok.RequiredArgsConstructor;
-import lombok.val;
-import lombok.extern.apachecommons.CommonsLog;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Contains the search functionalities and run them asynchronously for each url.
  */
 @RequiredArgsConstructor
-@CommonsLog
+@Slf4j
 public class SearchThread implements Runnable {
 
-    private final ThreadManager threadManager;
-    private final SearchInformation information;
-    private final String currentUrl;
-    private final HttpRequestSender httpRequestSender;
+  private final ThreadManager threadManager;
+  private final SearchInformation information;
+  private final String currentUrl;
+  private final HttpRequestSender httpRequestSender;
 
-    private static final Pattern URL_REGEX_PATTERN = Pattern.compile("<a\\s+(?:[^>]*?\\s+)?href=([\"'])((?!\").*?)\\1", CASE_INSENSITIVE);
+  private static final Pattern URL_REGEX_PATTERN = Pattern.compile("<a\\s+(?:[^>]*?\\s+)?href=([\"'])((?!\").*?)\\1", CASE_INSENSITIVE);
 
-    /**
-     * The runnable method to search for the desired informations on the web page.
-     */
-    @Override
-    public void run() {
-        val lines = httpRequestSender.doGetRequest(this.currentUrl);
-        var found = false;
+  /**
+   * The runnable method to search for the desired informations on the web page.
+   */
+  @Override
+  public void run() {
+    final var lines = httpRequestSender.doGetRequest(this.currentUrl);
+    var found = false;
 
-        for (val line : lines) {
-            found = found ? true : searchForKeyword(line);
-            searchForNewUrls(line);
-        }
+    for (final var line : lines) {
+      found = found ? true : searchForKeyword(line);
+      searchForNewUrls(line);
+    }
+  }
+
+  private boolean searchForKeyword(final String line) {
+    final var keyword = this.information.getKeyword().toLowerCase();
+
+    if (line.toLowerCase().contains(keyword)) {
+      this.threadManager.updateUrlKeywordWasFound(this.currentUrl);
+      return true;
     }
 
-    private boolean searchForKeyword(final String line) {
-        val keyword = this.information.getKeyword().toLowerCase();
+    return false;
+  }
 
-        if (line.toLowerCase().contains(keyword)) {
-            this.threadManager.updateUrlKeywordWasFound(this.currentUrl);
-            return true;
-        }
+  private void searchForNewUrls(final String line) {
+    final var matcher = URL_REGEX_PATTERN.matcher(line);
+    final var baseUrl = this.information.getBaseurl();
 
-        return false;
+    while (matcher.find()) {
+      final var foundUrl = matcher.group(2);
+      final var formedUrl = buildUrlPath(foundUrl);
+
+      final var startsWithHttp = formedUrl.startsWith("http");
+      final var startsWithBaseurl = formedUrl.startsWith(baseUrl);
+
+      if (null != formedUrl && startsWithHttp && startsWithBaseurl) {
+        this.threadManager.run(formedUrl.toString());
+      }
     }
+  }
 
-    private void searchForNewUrls(final String line) {
-        val matcher = URL_REGEX_PATTERN.matcher(line);
-        val baseUrl = this.information.getBaseurl();
+  private String buildUrlPath(final String foundUrl) {
+    final var baseUrl = this.information.getBaseurl();
 
-        while (matcher.find()) {
-            val foundUrl = matcher.group(2);
-            val formedUrl = buildUrlPath(foundUrl);
-
-            val startsWithHttp = formedUrl.startsWith("http");
-            val startsWithBaseurl = formedUrl.startsWith(baseUrl);
-
-            if (formedUrl != null && startsWithHttp && startsWithBaseurl) {
-                this.threadManager.run(formedUrl.toString());
-            }
-        }
+    try {
+      return URI.create(baseUrl).resolve(foundUrl).toURL().toString();
+    } catch (MalformedURLException e) {
+      log.warn("There was an error building the url {}", foundUrl);
+      return null;
     }
-
-    private String buildUrlPath(final String foundUrl) {
-        val baseUrl = this.information.getBaseurl();
-
-        try {
-            return URI.create(baseUrl).resolve(foundUrl).toURL().toString();
-        } catch (MalformedURLException e) {
-            log.warn("There was an error building the url " + foundUrl);
-            return null;
-        }
-    }
+  }
 
 }

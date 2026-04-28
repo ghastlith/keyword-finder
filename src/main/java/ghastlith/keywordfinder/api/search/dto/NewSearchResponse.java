@@ -5,6 +5,4 @@ package ghastlith.keywordfinder.api.search.dto;
  */
 public record NewSearchResponse(
     String id
-) {
-
-}
+) {}

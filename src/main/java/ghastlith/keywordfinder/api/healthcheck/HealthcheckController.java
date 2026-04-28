@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/")
 public class HealthcheckController {
 
-    @GetMapping
-    @ResponseBody
-    private String check() {
-        return OK.getReasonPhrase();
-    }
+  @GetMapping
+  @ResponseBody
+  private String check() {
+    return OK.getReasonPhrase();
+  }
 
 }

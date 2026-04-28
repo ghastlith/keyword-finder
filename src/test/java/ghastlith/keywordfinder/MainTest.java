@@ -17,69 +17,72 @@ import com.jayway.jsonpath.JsonPath;
 
 import ghastlith.keywordfinder.api.healthcheck.HealthcheckController;
 import ghastlith.keywordfinder.api.search.SearchController;
-import lombok.val;
-import lombok.extern.apachecommons.CommonsLog;
+import lombok.extern.slf4j.Slf4j;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@CommonsLog
+@Slf4j
 public class MainTest {
 
-    @Autowired private HealthcheckController healthcheckController;
-    @Autowired private SearchController searchController;
-    @Autowired private MockMvc mockMvc;
+  @Autowired private HealthcheckController healthcheckController;
+  @Autowired private SearchController searchController;
+  @Autowired private MockMvc mockMvc;
 
-    @Test
-    void sanityCheck() {
-        assertThat(healthcheckController).isNotNull();
-        assertThat(searchController).isNotNull();
-    }
+  @Test
+  void sanityCheck() {
+    assertThat(healthcheckController).isNotNull();
+    assertThat(searchController).isNotNull();
+  }
 
-    @Test
-    void integrationTest() throws Exception {
-        val healthcheckCheckResponse = this.mockMvc.perform(get("/"))
-            .andExpect(status().isOk())
-            .andReturn()
-            .getResponse();
+  @Test
+  void integrationTest() throws Exception {
+    final var healthcheckCheckResponse = this.mockMvc.perform(get("/"))
+        .andExpect(status().isOk())
+        .andReturn()
+        .getResponse();
 
-        log.info(
-            healthcheckCheckResponse.getStatus() + "\n" +
-            healthcheckCheckResponse.getContentAsString()
-        );
+    log.info(
+      "{}\n{}",
+      healthcheckCheckResponse.getStatus(),
+      healthcheckCheckResponse.getContentAsString()
+    );
 
-        val searchNewSearchBody = "{ \"keyword\": \"magic\", \"baseurl\": \"https://example.com\" }";
-        val searchNewSearchResponse = this.mockMvc.perform(post("/search")
-            .contentType(APPLICATION_JSON)
-            .content(searchNewSearchBody))
-            .andExpect(status().isCreated())
-            .andReturn()
-            .getResponse();
+    final var searchNewSearchBody = "{ \"keyword\": \"magic\", \"baseurl\": \"https://example.com\" }";
+    final var searchNewSearchResponse = this.mockMvc.perform(post("/search")
+        .contentType(APPLICATION_JSON)
+        .content(searchNewSearchBody))
+        .andExpect(status().isCreated())
+        .andReturn()
+        .getResponse();
 
-        log.info(
-            searchNewSearchResponse.getStatus() + "\n" +
-            new JSONObject(searchNewSearchResponse.getContentAsString()).toString(4)
-        );
+    log.info(
+      "{}\n{}",
+      searchNewSearchResponse.getStatus(),
+      new JSONObject(searchNewSearchResponse.getContentAsString()).toString(4)
+    );
 
-        val searchListSearchesResponse = this.mockMvc.perform(get("/search"))
-            .andExpect(status().isOk())
-            .andReturn()
-            .getResponse();
+    final var searchListSearchesResponse = this.mockMvc.perform(get("/search"))
+        .andExpect(status().isOk())
+        .andReturn()
+        .getResponse();
 
-        log.info(
-            searchListSearchesResponse.getStatus() + "\n" +
-            new JSONObject(searchListSearchesResponse.getContentAsString()).toString(4)
-        );
+    log.info(
+      "{}\n{}",
+      searchListSearchesResponse.getStatus(),
+      new JSONObject(searchListSearchesResponse.getContentAsString()).toString(4)
+    );
 
-        val searchId = JsonPath.read(searchNewSearchResponse.getContentAsString(), "$.id");
-        val searchDisplaySearchResponse = this.mockMvc.perform(get("/search/" + searchId))
-            .andExpect(status().isOk())
-            .andReturn()
-            .getResponse();
+    final var searchId = JsonPath.read(searchNewSearchResponse.getContentAsString(), "$.id");
+    final var searchDisplaySearchResponse = this.mockMvc.perform(get("/search/" + searchId))
+        .andExpect(status().isOk())
+        .andReturn()
+        .getResponse();
 
-        log.info(
-            searchDisplaySearchResponse.getStatus() + "\n" +
-            new JSONObject(searchDisplaySearchResponse.getContentAsString()).toString(4)
-        );
-    }
+    log.info(
+      "{}\n{}",
+      searchDisplaySearchResponse.getStatus(),
+      new JSONObject(searchDisplaySearchResponse.getContentAsString()).toString(4)
+    );
+  }
 
 }

@@ -16,6 +16,4 @@ public record ErrorResponse(
     String error,
     List<String> message,
     String path
-) {
-
-}
+) {}

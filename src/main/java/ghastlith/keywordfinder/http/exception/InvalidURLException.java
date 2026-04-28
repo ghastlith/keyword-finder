@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(BAD_REQUEST)
 public class InvalidURLException extends RuntimeException {
 
-    public InvalidURLException(final String url) {
-        super("The URL " + url + " is invalid");
-    }
+  public InvalidURLException(final String url) {
+    super("The URL " + url + " is invalid");
+  }
 
 }

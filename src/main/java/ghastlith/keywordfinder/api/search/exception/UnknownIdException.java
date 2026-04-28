@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(BAD_REQUEST)
 public class UnknownIdException extends RuntimeException {
 
-    public UnknownIdException(final String id) {
-        super("The ID " + id + " does not exist");
-    }
+  public UnknownIdException(final String id) {
+    super("The ID " + id + " does not exist");
+  }
 
 }

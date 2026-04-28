@@ -7,6 +7,4 @@ import java.util.List;
  */
 public record ListDisplayResponse(
     List<ListDisplayElement> searches
-) {
-
-}
+) {}

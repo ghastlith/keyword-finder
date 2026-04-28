@@ -6,8 +6,8 @@ package ghastlith.keywordfinder.http.exception;
  */
 public class HttpErrorResponseException extends RuntimeException {
 
-    public HttpErrorResponseException(final Integer code) {
-        super("There was an error " + code + " with the HTTP Request");
-    }
+  public HttpErrorResponseException(final Integer code) {
+    super("There was an error " + code + " with the HTTP Request");
+  }
 
 }
