@@ -73,7 +73,7 @@ public class SearchThread implements Runnable {
     try {
       return URI.create(baseUrl).resolve(foundUrl).toURL().toString();
     } catch (MalformedURLException e) {
-      log.warn("There was an error building the url {}", foundUrl);
+      log.warn("there was an error building the url {}", foundUrl);
       return null;
     }
   }

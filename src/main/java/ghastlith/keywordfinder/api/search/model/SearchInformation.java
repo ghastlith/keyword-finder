@@ -20,7 +20,7 @@ public class SearchInformation {
   private Boolean done;
   private Map<String, Boolean> urls;
 
-  private static final String SEARCH_INFORMATION_LOG_TEMPLATE = "Search %s found %s in %d url(s)";
+  private static final String SEARCH_INFORMATION_LOG_TEMPLATE = "search %s found %s in %d url(s)";
 
   /**
    * Builds a new SearchInformation object based on the user's input.

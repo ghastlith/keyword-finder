@@ -59,7 +59,7 @@ public class ThreadManager {
     CompletableFuture.runAsync(thread, this.executor)
         .whenComplete((result, throwable) -> {
           if (null != throwable) {
-            log.warn("Thread finished with errors: {}", throwable);
+            log.warn("thread finished with errors: {}", throwable);
           }
 
           final var threads = this.runningThreadsCount.decrementAndGet();
