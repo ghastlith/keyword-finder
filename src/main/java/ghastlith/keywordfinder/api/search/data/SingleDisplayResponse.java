@@ -1,4 +1,4 @@
-package ghastlith.keywordfinder.api.search.dto;
+package ghastlith.keywordfinder.api.search.data;
 
 import java.util.List;
 

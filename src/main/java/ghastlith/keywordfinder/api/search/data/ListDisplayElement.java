@@ -1,4 +1,4 @@
-package ghastlith.keywordfinder.api.search.dto;
+package ghastlith.keywordfinder.api.search.data;
 
 import ghastlith.keywordfinder.api.search.model.SearchInformation;
 import lombok.Builder;

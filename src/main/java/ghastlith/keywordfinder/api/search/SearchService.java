@@ -8,11 +8,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.stereotype.Service;
 
-import ghastlith.keywordfinder.api.search.dto.ListDisplayElement;
-import ghastlith.keywordfinder.api.search.dto.ListDisplayResponse;
-import ghastlith.keywordfinder.api.search.dto.NewSearchResponse;
-import ghastlith.keywordfinder.api.search.dto.SearchRequestBody;
-import ghastlith.keywordfinder.api.search.dto.SingleDisplayResponse;
+import ghastlith.keywordfinder.api.search.data.ListDisplayElement;
+import ghastlith.keywordfinder.api.search.data.ListDisplayResponse;
+import ghastlith.keywordfinder.api.search.data.NewSearchResponse;
+import ghastlith.keywordfinder.api.search.data.SearchRequestBody;
+import ghastlith.keywordfinder.api.search.data.SingleDisplayResponse;
 import ghastlith.keywordfinder.api.search.exception.UnknownIdException;
 import ghastlith.keywordfinder.api.search.model.SearchInformation;
 import ghastlith.keywordfinder.api.search.utility.IdUtilities;

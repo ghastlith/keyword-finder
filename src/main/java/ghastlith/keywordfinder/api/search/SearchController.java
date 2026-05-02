@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import ghastlith.keywordfinder.api.search.dto.ListDisplayResponse;
-import ghastlith.keywordfinder.api.search.dto.NewSearchResponse;
-import ghastlith.keywordfinder.api.search.dto.SearchRequestBody;
-import ghastlith.keywordfinder.api.search.dto.SingleDisplayResponse;
+import ghastlith.keywordfinder.api.search.data.ListDisplayResponse;
+import ghastlith.keywordfinder.api.search.data.NewSearchResponse;
+import ghastlith.keywordfinder.api.search.data.SearchRequestBody;
+import ghastlith.keywordfinder.api.search.data.SingleDisplayResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
