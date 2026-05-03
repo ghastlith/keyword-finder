@@ -29,7 +29,7 @@ public class HttpRequestSenderTest {
   @Test
   void doGetRequest_shouldReturnResponseBodyAsListOfLinesWhenRequestIs2xxSuccessful() throws IOException, InterruptedException {
     // given
-    final var expectedResponseBody = List.of("<html>", "Successful Request", "</html>");
+    final var expectedResponseBody = List.of("<html>", "successful request", "</html>");
     final var responseBodyMock = expectedResponseBody.stream();
 
     when(this.mockHttpResponse.statusCode()).thenReturn(200);
