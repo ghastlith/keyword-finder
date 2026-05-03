@@ -24,11 +24,6 @@ dependencies {
 
   // tests
   testImplementation("org.springframework.boot:spring-boot-starter-test:3.5.4")
-  testImplementation("org.assertj:assertj-core:3.24.2")
-  testImplementation("org.mockito:mockito-core:5.19.0")
-  testImplementation("org.mockito:mockito-junit-jupiter:5.19.0")
-  testImplementation("org.junit.jupiter:junit-jupiter-api:5.13.4")
-  testImplementation("org.junit.jupiter:junit-jupiter-params:5.13.4")
 
   // lombok
   compileOnly("org.projectlombok:lombok:1.18.38")
