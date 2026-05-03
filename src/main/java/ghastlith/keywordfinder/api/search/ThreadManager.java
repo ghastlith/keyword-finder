@@ -27,7 +27,7 @@ public class ThreadManager {
    * @param url the url to spawn a new thread
    */
   public void run(final String url) {
-    this.information.getUrls().computeIfAbsent(url, key -> {
+    information.getUrls().computeIfAbsent(url, key -> {
       spawnNewThread(url);
       return false;
     });
@@ -40,7 +40,7 @@ public class ThreadManager {
    * @param url the url to be updated
    */
   public void updateUrlKeywordWasFound(final String url) {
-    this.information.getUrls().compute(url, (key, value) -> {
+    information.getUrls().compute(url, (key, value) -> {
       return true;
     });
   }
@@ -53,16 +53,16 @@ public class ThreadManager {
    * @param url the url to be searched
    */
   private void spawnNewThread(final String url) {
-    final var thread = new SearchThread(this, this.information, url, this.httpRequestSender);
-    this.runningThreadsCount.incrementAndGet();
+    final var thread = new SearchThread(this, information, url, httpRequestSender);
+    runningThreadsCount.incrementAndGet();
 
-    CompletableFuture.runAsync(thread, this.executor)
+    CompletableFuture.runAsync(thread, executor)
         .whenComplete((result, throwable) -> {
           if (null != throwable) {
             log.warn("thread finished with errors: {}", throwable);
           }
 
-          final var threads = this.runningThreadsCount.decrementAndGet();
+          final var threads = runningThreadsCount.decrementAndGet();
           if (threads < 1) {
             closeSearch();
           }
@@ -70,7 +70,7 @@ public class ThreadManager {
   }
 
   private void closeSearch() {
-    this.information.markAsDone();
+    information.markAsDone();
     log.info(information.toLogMessage());
   }
 

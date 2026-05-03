@@ -41,7 +41,7 @@ public class SearchService {
     final var id = IdUtilities.generateNewId(searches);
 
     final var information = new SearchInformation(id, body.keyword(), body.baseurl());
-    this.searches.put(id, information);
+    searches.put(id, information);
 
     spawnFirstSearchThread(information);
 
@@ -71,11 +71,11 @@ public class SearchService {
    * @return The user readable data of the search information.
    */
   public SingleDisplayResponse displaySearch(final String id) {
-    if (!IdUtilities.idExists(this.searches, id)) {
+    if (!IdUtilities.idExists(searches, id)) {
       throw new UnknownIdException(id);
     }
 
-    final var information = this.searches.get(id);
+    final var information = searches.get(id);
 
     return SingleDisplayResponse.fromSearchInformation(information);
   }

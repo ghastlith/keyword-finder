@@ -50,7 +50,7 @@ public class IdUtilitiesTest {
   void idExists_shouldReturnTrueWhenMapContainsId() {
     // given
     final var searches = new HashMap<String, SearchInformation>();
-    searches.put(ID_1, this.information);
+    searches.put(ID_1, information);
 
     // when
     final var result = IdUtilities.idExists(searches, ID_1);

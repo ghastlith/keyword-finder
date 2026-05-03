@@ -36,7 +36,7 @@ public class MainTest {
 
   @Test
   void integrationTest() throws Exception {
-    final var healthcheckCheckResponse = this.mockMvc.perform(get("/"))
+    final var healthcheckCheckResponse = mockMvc.perform(get("/"))
         .andExpect(status().isOk())
         .andReturn()
         .getResponse();
@@ -48,7 +48,7 @@ public class MainTest {
     );
 
     final var searchNewSearchBody = "{ \"keyword\": \"magic\", \"baseurl\": \"https://example.com\" }";
-    final var searchNewSearchResponse = this.mockMvc.perform(post("/search")
+    final var searchNewSearchResponse = mockMvc.perform(post("/search")
         .contentType(APPLICATION_JSON)
         .content(searchNewSearchBody))
         .andExpect(status().isCreated())
@@ -61,7 +61,7 @@ public class MainTest {
       new JSONObject(searchNewSearchResponse.getContentAsString()).toString(4)
     );
 
-    final var searchListSearchesResponse = this.mockMvc.perform(get("/search"))
+    final var searchListSearchesResponse = mockMvc.perform(get("/search"))
         .andExpect(status().isOk())
         .andReturn()
         .getResponse();
@@ -73,7 +73,7 @@ public class MainTest {
     );
 
     final var searchId = JsonPath.read(searchNewSearchResponse.getContentAsString(), "$.id");
-    final var searchDisplaySearchResponse = this.mockMvc.perform(get("/search/" + searchId))
+    final var searchDisplaySearchResponse = mockMvc.perform(get("/search/" + searchId))
         .andExpect(status().isOk())
         .andReturn()
         .getResponse();

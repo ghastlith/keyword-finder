@@ -31,7 +31,7 @@ public class ThreadManagerTest {
   void run_threadCounterIncrementedWhenNewThreadStarted() {
     // given
     final var runningThreadsCount = new AtomicInteger(0);
-    final var threadManager = new ThreadManager(this.mockInformation, this.mockExecutor, this.mockHttpRequestSender, runningThreadsCount);
+    final var threadManager = new ThreadManager(mockInformation, mockExecutor, mockHttpRequestSender, runningThreadsCount);
 
     // when
     threadManager.run(BASEURL);
@@ -44,7 +44,7 @@ public class ThreadManagerTest {
   void run_shouldAddUniqueUrlToInformationUrlsMap() {
     // given
     final var information = new SearchInformation(ID, KEYWORD, BASEURL);
-    final var threadManager = new ThreadManager(information, this.mockExecutor, this.mockHttpRequestSender, this.mockRunningThreadsCount);
+    final var threadManager = new ThreadManager(information, mockExecutor, mockHttpRequestSender, mockRunningThreadsCount);
     final var expectedMap = Map.of(
       BASEURL, false
     );
@@ -60,7 +60,7 @@ public class ThreadManagerTest {
   void updateUrlKeywordWasFound_shouldUpdateUrlsMapValueToTrueWhenKeywordWasFound() {
     // given
     final var information = new SearchInformation(ID, KEYWORD, BASEURL);
-    final var threadManager = new ThreadManager(information, this.mockExecutor, this.mockHttpRequestSender, this.mockRunningThreadsCount);
+    final var threadManager = new ThreadManager(information, mockExecutor, mockHttpRequestSender, mockRunningThreadsCount);
     final var expectedMap = Map.of(
       BASEURL, true
     );
@@ -77,7 +77,7 @@ public class ThreadManagerTest {
   void integration_searchInformationUrlsShouldReturnUniqueAndValidUrls() {
     // given
     final var information = new SearchInformation(ID, KEYWORD, BASEURL);
-    final var threadManager = new ThreadManager(information, this.mockExecutor, this.mockHttpRequestSender, this.mockRunningThreadsCount);
+    final var threadManager = new ThreadManager(information, mockExecutor, mockHttpRequestSender, mockRunningThreadsCount);
 
     final var url1 = BASEURL;
     final var url2 = BASEURL + "/bar.html";

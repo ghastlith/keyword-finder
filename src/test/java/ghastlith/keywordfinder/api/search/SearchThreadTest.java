@@ -32,16 +32,16 @@ public class SearchThreadTest {
   @MethodSource("provideLinesForRunSearchForKeywords")
   void run_updateUrlsMapWhenKeywordIsFoundInPageSource(final List<String> lines, final int expected) {
     // given
-    final var searchThread = new SearchThread(this.mockThreadManager, this.mockInformation, BASEURL, this.mockHttpRequestSender);
+    final var searchThread = new SearchThread(mockThreadManager, mockInformation, BASEURL, mockHttpRequestSender);
 
-    when(this.mockInformation.getKeyword()).thenReturn(KEYWORD);
-    when(this.mockHttpRequestSender.doGetRequest(BASEURL)).thenReturn(lines);
+    when(mockInformation.getKeyword()).thenReturn(KEYWORD);
+    when(mockHttpRequestSender.doGetRequest(BASEURL)).thenReturn(lines);
 
     // when
     searchThread.run();
 
     // then
-    verify(this.mockThreadManager, times(expected)).updateUrlKeywordWasFound(BASEURL);
+    verify(mockThreadManager, times(expected)).updateUrlKeywordWasFound(BASEURL);
   }
 
   private static List<Arguments> provideLinesForRunSearchForKeywords() {
@@ -61,17 +61,17 @@ public class SearchThreadTest {
   @MethodSource("provideLinesForRunSearchForUrls")
   void run_startNewThreadsWhenValidUrlIsFoundInPageSource(final List<String> lines, final List<String> expected) {
     // given
-    final var searchThread = new SearchThread(this.mockThreadManager, this.mockInformation, BASEURL, this.mockHttpRequestSender);
+    final var searchThread = new SearchThread(mockThreadManager, mockInformation, BASEURL, mockHttpRequestSender);
 
-    when(this.mockInformation.getBaseurl()).thenReturn(BASEURL);
-    when(this.mockInformation.getKeyword()).thenReturn(KEYWORD);
-    when(this.mockHttpRequestSender.doGetRequest(any())).thenReturn(lines);
+    when(mockInformation.getBaseurl()).thenReturn(BASEURL);
+    when(mockInformation.getKeyword()).thenReturn(KEYWORD);
+    when(mockHttpRequestSender.doGetRequest(any())).thenReturn(lines);
 
     // when
     searchThread.run();
 
     // then
-    expected.forEach(expectedUrl -> verify(this.mockThreadManager).run(expectedUrl));
+    expected.forEach(expectedUrl -> verify(mockThreadManager).run(expectedUrl));
   }
 
   private static List<Arguments> provideLinesForRunSearchForUrls() {

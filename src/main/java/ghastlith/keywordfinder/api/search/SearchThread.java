@@ -30,7 +30,7 @@ public class SearchThread implements Runnable {
    */
   @Override
   public void run() {
-    final var lines = httpRequestSender.doGetRequest(this.currentUrl);
+    final var lines = httpRequestSender.doGetRequest(currentUrl);
     var found = false;
 
     for (final var line : lines) {
@@ -40,10 +40,10 @@ public class SearchThread implements Runnable {
   }
 
   private boolean searchForKeyword(final String line) {
-    final var keyword = this.information.getKeyword().toLowerCase();
+    final var keyword = information.getKeyword().toLowerCase();
 
     if (line.toLowerCase().contains(keyword)) {
-      this.threadManager.updateUrlKeywordWasFound(this.currentUrl);
+      threadManager.updateUrlKeywordWasFound(currentUrl);
       return true;
     }
 
@@ -52,7 +52,7 @@ public class SearchThread implements Runnable {
 
   private void searchForNewUrls(final String line) {
     final var matcher = URL_REGEX_PATTERN.matcher(line);
-    final var baseUrl = this.information.getBaseurl();
+    final var baseUrl = information.getBaseurl();
 
     while (matcher.find()) {
       final var foundUrl = matcher.group(2);
@@ -62,13 +62,13 @@ public class SearchThread implements Runnable {
       final var startsWithBaseurl = formedUrl.startsWith(baseUrl);
 
       if (null != formedUrl && startsWithHttp && startsWithBaseurl) {
-        this.threadManager.run(formedUrl.toString());
+        threadManager.run(formedUrl.toString());
       }
     }
   }
 
   private String buildUrlPath(final String foundUrl) {
-    final var baseUrl = this.information.getBaseurl();
+    final var baseUrl = information.getBaseurl();
 
     try {
       return URI.create(baseUrl).resolve(foundUrl).toURL().toString();

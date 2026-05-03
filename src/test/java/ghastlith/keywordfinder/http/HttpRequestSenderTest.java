@@ -35,12 +35,12 @@ public class HttpRequestSenderTest {
     final var expectedResponseBody = List.of("<html>", "successful request", "</html>");
     final var responseBodyMock = expectedResponseBody.stream();
 
-    when(this.mockHttpResponse.statusCode()).thenReturn(200);
-    when(this.mockHttpResponse.body()).thenReturn(responseBodyMock);
-    when(this.mockHttpClient.send(any(), any())).thenReturn(this.mockHttpResponse);
+    when(mockHttpResponse.statusCode()).thenReturn(200);
+    when(mockHttpResponse.body()).thenReturn(responseBodyMock);
+    when(mockHttpClient.send(any(), any())).thenReturn(mockHttpResponse);
 
     // when
-    final var response = this.mockHttpRequestSender.doGetRequest(URL);
+    final var response = mockHttpRequestSender.doGetRequest(URL);
 
     // then
     assertEquals(expectedResponseBody, response);
@@ -49,11 +49,11 @@ public class HttpRequestSenderTest {
   @Test
   void doGetRequest_shouldThrowHttpErrorResponseExceptionWhenStatusIsNot2xxSuccessful() throws IOException, InterruptedException {
     // given
-    when(this.mockHttpResponse.statusCode()).thenReturn(403);
-    when(this.mockHttpClient.send(any(), any())).thenReturn(this.mockHttpResponse);
+    when(mockHttpResponse.statusCode()).thenReturn(403);
+    when(mockHttpClient.send(any(), any())).thenReturn(mockHttpResponse);
 
     // when
-    final var throwable = catchThrowable(() -> this.mockHttpRequestSender.doGetRequest(URL));
+    final var throwable = catchThrowable(() -> mockHttpRequestSender.doGetRequest(URL));
 
     // then
     assertThat(throwable).isInstanceOf(HttpErrorResponseException.class);
