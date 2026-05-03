@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.toUnmodifiableList;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 import lombok.Getter;
@@ -62,8 +63,8 @@ public class SearchInformation {
   public List<String> getUrlsKeywordFoundList() {
     return this.urls.entrySet()
         .stream()
-        .filter(Map.Entry::getValue)
-        .map(Map.Entry::getKey)
+        .filter(Entry::getValue)
+        .map(Entry::getKey)
         .sorted()
         .collect(toUnmodifiableList());
   }
