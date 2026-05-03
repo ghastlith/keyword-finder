@@ -2,25 +2,28 @@ package ghastlith.keywordfinder.api.search;
 
 import static java.util.Collections.emptyList;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
 
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import ghastlith.keywordfinder.api.search.model.SearchInformation;
 import ghastlith.keywordfinder.http.HttpRequestSender;
 
+@ExtendWith(MockitoExtension.class)
 public class SearchThreadTest {
 
-  private final ThreadManager mockThreadManager = mock(ThreadManager.class);
-  private final SearchInformation mockInformation = mock(SearchInformation.class);
-  private final HttpRequestSender mockHttpRequestSender = mock(HttpRequestSender.class);
+  @Mock private ThreadManager mockThreadManager;
+  @Mock private SearchInformation mockInformation;
+  @Mock private HttpRequestSender mockHttpRequestSender;
 
   private static final String KEYWORD = "magic";
   private static final String BASEURL = "https://example.com";

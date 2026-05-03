@@ -1,7 +1,6 @@
 package ghastlith.keywordfinder.api.search;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
 
 import java.util.List;
 import java.util.Map;
@@ -9,16 +8,20 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import ghastlith.keywordfinder.api.search.model.SearchInformation;
 import ghastlith.keywordfinder.http.HttpRequestSender;
 
+@ExtendWith(MockitoExtension.class)
 public class ThreadManagerTest {
 
-  private final SearchInformation mockInformation = mock(SearchInformation.class);
-  private final ExecutorService mockExecutor = mock(ExecutorService.class);
-  private final HttpRequestSender mockHttpRequestSender = mock(HttpRequestSender.class);
-  private final AtomicInteger mockRunningThreadsCount = mock(AtomicInteger.class);
+  @Mock private SearchInformation mockInformation;
+  @Mock private ExecutorService mockExecutor;
+  @Mock private HttpRequestSender mockHttpRequestSender;
+  @Mock private AtomicInteger mockRunningThreadsCount;
 
   private static final String ID = "05GNJVHm";
   private static final String KEYWORD = "magic";

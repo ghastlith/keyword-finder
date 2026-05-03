@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
@@ -13,16 +12,20 @@ import java.net.http.HttpResponse;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import ghastlith.keywordfinder.http.exception.HttpErrorResponseException;
 
+@ExtendWith(MockitoExtension.class)
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class HttpRequestSenderTest {
 
-  private final HttpClient mockHttpClient = mock(HttpClient.class);
-  private final HttpResponse mockHttpResponse = mock(HttpResponse.class);
-
-  private final HttpRequestSender mockHttpRequestSender = new HttpRequestSender(mockHttpClient);
+  @Mock private HttpClient mockHttpClient;
+  @Mock private HttpResponse mockHttpResponse;
+  @InjectMocks private HttpRequestSender mockHttpRequestSender;
 
   private static final String URL = "https://example.com/";
 
