@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Routes every health check and informative action.
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping({ "/", "/health", "/healthcheck" })
 public class HealthcheckController {
 
   @GetMapping
