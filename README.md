@@ -2,7 +2,7 @@
 
 The focus of keyword-finder is, as the name says, look for specific **keywords** on a provided **website** an its associated **subdomains**.
 
-## running in docker
+## docker
 
 To run the application in Docker, you simply build the image.
 
