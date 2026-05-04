@@ -1,8 +1,6 @@
 package ghastlith.keywordfinder.api.search.utility;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -56,7 +54,7 @@ public class IdUtilitiesTest {
     final var result = IdUtilities.idExists(searches, ID_1);
 
     // then
-    assertTrue(result);
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -69,7 +67,7 @@ public class IdUtilitiesTest {
     final var result = IdUtilities.idExists(searches, ID_2);
 
     // then
-    assertFalse(result);
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -81,7 +79,7 @@ public class IdUtilitiesTest {
     final var result = IdUtilities.idExists(searches, ID_1);
 
     // then
-    assertFalse(result);
+    assertThat(result).isFalse();
   }
 
 }

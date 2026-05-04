@@ -1,6 +1,6 @@
 package ghastlith.keywordfinder.api.search;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.Map;
@@ -37,7 +37,7 @@ public class ThreadManagerTest {
     threadManager.run(BASEURL);
 
     // then
-    assertEquals(1, runningThreadsCount.get());
+    assertThat(runningThreadsCount.get()).isEqualTo(1);
   }
 
   @Test
@@ -53,7 +53,7 @@ public class ThreadManagerTest {
     threadManager.run(BASEURL);
 
     // then
-    assertEquals(information.getUrls(), expectedMap);
+    assertThat(information.getUrls()).isEqualTo(expectedMap);
   }
 
   @Test
@@ -70,7 +70,7 @@ public class ThreadManagerTest {
     threadManager.updateUrlKeywordWasFound(BASEURL);
 
     // then
-    assertEquals(information.getUrls(), expectedMap);
+    assertThat(information.getUrls()).isEqualTo(expectedMap);
   }
 
   @Test
@@ -100,8 +100,8 @@ public class ThreadManagerTest {
     threadManager.updateUrlKeywordWasFound(url3);
 
     // then
-    assertEquals(information.getUrls(), expectedUrlsMap);
-    assertEquals(information.getUrlsKeywordFoundList(), expectedUrlsKeywordFoundList);
+    assertThat(information.getUrls()).isEqualTo(expectedUrlsMap);
+    assertThat(information.getUrlsKeywordFoundList()).isEqualTo(expectedUrlsKeywordFoundList);
   }
 
 }

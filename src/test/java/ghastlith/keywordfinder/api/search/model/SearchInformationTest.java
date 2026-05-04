@@ -1,6 +1,6 @@
 package ghastlith.keywordfinder.api.search.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class SearchInformationTest {
     searchInformation.markAsDone();
 
     // then
-    assertEquals("done", searchInformation.getDone());
+    assertThat(searchInformation.getDone()).isEqualTo("done");
   }
 
   @Test
@@ -32,7 +32,7 @@ public class SearchInformationTest {
     // when
 
     // then
-    assertEquals("running", searchInformation.getDone());
+    assertThat(searchInformation.getDone()).isEqualTo("running");
   }
 
   @Test
@@ -44,7 +44,7 @@ public class SearchInformationTest {
     searchInformation.markAsDone();
 
     // then
-    assertEquals("done", searchInformation.getDone());
+    assertThat(searchInformation.getDone()).isEqualTo("done");
   }
 
   @Test
@@ -66,7 +66,7 @@ public class SearchInformationTest {
     final var urls = searchInformation.getUrlsKeywordFoundList();
 
     // then
-    assertEquals(expectedUrls, urls);
+    assertThat(urls).isEqualTo(expectedUrls);
   }
 
   @Test
@@ -88,7 +88,7 @@ public class SearchInformationTest {
     final var urls = searchInformation.getUrlsKeywordFoundList();
 
     // then
-    assertEquals(expectedUrls, urls);
+    assertThat(urls).isEqualTo(expectedUrls);
   }
 
   @Test
@@ -102,7 +102,7 @@ public class SearchInformationTest {
     final var urls = searchInformation.getUrlsKeywordFoundList();
 
     // then
-    assertEquals(expectedUrls, urls);
+    assertThat(urls).isEqualTo(expectedUrls);
   }
 
   @Test
@@ -124,7 +124,7 @@ public class SearchInformationTest {
     final var message = searchInformation.toLogMessage();
 
     // then
-    assertEquals(expectedMessage, message);
+    assertThat(message).isEqualTo(expectedMessage);
   }
 
 }

@@ -2,7 +2,6 @@ package ghastlith.keywordfinder.http;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -43,7 +42,7 @@ public class HttpRequestSenderTest {
     final var response = mockHttpRequestSender.doGetRequest(URL);
 
     // then
-    assertEquals(expectedResponseBody, response);
+    assertThat(response).isEqualTo(expectedResponseBody);
   }
 
   @Test
