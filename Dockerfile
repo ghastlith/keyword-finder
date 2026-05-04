@@ -9,13 +9,14 @@ RUN gradle build --no-daemon
 # run
 FROM eclipse-temurin:21-jre
 
-ENV JAR_NAME=keyword-finder-3.0.0.jar
 ENV APP_HOME=/usr/app
+ENV JAR_NAME=keyword-finder-3.0.0.jar
+ENV JAR_PATH=${APP_HOME}/build/libs/${JAR_NAME}
 
-WORKDIR $APP_HOME
-COPY --from=build $APP_HOME .
+WORKDIR ${APP_HOME}
+COPY --from=build ${APP_HOME} .
 
 # run
 SHELL [ "/bin/bash", "-c" ]
 EXPOSE 8080
-ENTRYPOINT exec java -jar $APP_HOME/build/libs/$JAR_NAME
+ENTRYPOINT exec java -jar ${JAR_PATH}
