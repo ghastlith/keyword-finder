@@ -58,7 +58,7 @@ public class ThreadManager {
 
     CompletableFuture.runAsync(thread, executor)
         .whenComplete((result, throwable) -> {
-          if (null != throwable) {
+          if (throwable != null) {
             log.warn("thread finished with errors: {}", throwable);
           }
 

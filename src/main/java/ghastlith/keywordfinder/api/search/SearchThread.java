@@ -61,7 +61,7 @@ public class SearchThread implements Runnable {
       final var startsWithHttp = formedUrl.startsWith("http");
       final var startsWithBaseurl = formedUrl.startsWith(baseUrl);
 
-      if (null != formedUrl && startsWithHttp && startsWithBaseurl) {
+      if (formedUrl != null && startsWithHttp && startsWithBaseurl) {
         threadManager.run(formedUrl.toString());
       }
     }
