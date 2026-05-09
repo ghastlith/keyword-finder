@@ -1,9 +1,0 @@
-{
-  "properties": [
-    {
-      "name": "thread.pool.size",
-      "type": "java.lang.Integer",
-      "description": "The limit of threads possible in the thread pool."
-    }
-  ]
-}
