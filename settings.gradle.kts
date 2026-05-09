@@ -1,1 +1,1 @@
-rootProject.name = "keyword-finder"
+rootProject.name = "indexer";

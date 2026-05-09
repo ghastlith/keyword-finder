@@ -1,0 +1,77 @@
+package ghastlith.indexer.api.search;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import ghastlith.indexer.api.search.model.SearchInformation;
+import ghastlith.indexer.http.HttpRequestSender;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+/**
+ * Manages everything related to the search threads.
+ */
+@RequiredArgsConstructor
+@Slf4j
+public class ThreadManager {
+
+  private final SearchInformation information;
+  private final ExecutorService executor;
+  private final HttpRequestSender httpRequestSender;
+  private final AtomicInteger runningThreadsCount;
+
+  /**
+   * Spawns a new thread if the url is not present on the searched ones.
+   *
+   * @param url the url to spawn a new thread
+   */
+  public void run(final String url) {
+    information.getUrls().computeIfAbsent(url, key -> {
+      spawnNewThread(url);
+      return false;
+    });
+  }
+
+  /**
+   * Updates the map of searched urls to a positive value because the keyword was
+   * found on the search.
+   *
+   * @param url the url to be updated
+   */
+  public void updateUrlKeywordWasFound(final String url) {
+    information.getUrls().compute(url, (key, value) -> {
+      return true;
+    });
+  }
+
+  /**
+   * Spawns a new search thread for the provided url and keeps track of the
+   * current running thread count so that if it reaches 0 the status of the search
+   * is updated to done and the pool is shutdown.
+   *
+   * @param url the url to be searched
+   */
+  private void spawnNewThread(final String url) {
+    final var thread = new SearchThread(this, information, url, httpRequestSender);
+    runningThreadsCount.incrementAndGet();
+
+    CompletableFuture.runAsync(thread, executor)
+        .whenComplete((result, throwable) -> {
+          if (throwable != null) {
+            log.warn("thread finished with errors: {}", throwable);
+          }
+
+          final var threads = runningThreadsCount.decrementAndGet();
+          if (threads < 1) {
+            closeSearch();
+          }
+        });
+  }
+
+  private void closeSearch() {
+    information.markAsDone();
+    log.info(information.toLogMessage());
+  }
+
+}

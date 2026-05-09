@@ -1,19 +1,19 @@
-# keyword-finder
+# indexer
 
-The focus of keyword-finder is, as the name says, look for specific **keywords** on a provided **website** an its associated **subdomains**.
+The focus of this indexing application is to look for specific **keywords** on a provided **website** an its associated **subdomains**.
 
 ## docker
 
 To run the application in Docker, you simply build the image.
 
 ```sh
-docker build . -t keywordfinder
+docker build . -t indexer
 ```
 
 Then run the container at the default spring boot port.
 
 ```sh
-docker run -p 8080:8080 --rm keywordfinder
+docker run -p 8080:8080 --rm indexer
 ```
 
 ## how it works
