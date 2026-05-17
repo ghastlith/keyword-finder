@@ -32,6 +32,10 @@ dependencies {
   testAnnotationProcessor("org.projectlombok:lombok:1.18.38");
 }
 
+tasks.bootJar {
+  archiveVersion.set("");
+}
+
 tasks.withType<Test>().configureEach {
   useJUnitPlatform();
 

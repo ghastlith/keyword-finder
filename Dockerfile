@@ -10,7 +10,7 @@ RUN gradle build --no-daemon
 FROM eclipse-temurin:21-jre
 
 ENV APP_HOME=/usr/app
-ENV JAR_NAME=indexer-3.0.0.jar
+ENV JAR_NAME=indexer.jar
 ENV JAR_PATH=${APP_HOME}/build/libs/${JAR_NAME}
 
 WORKDIR ${APP_HOME}
