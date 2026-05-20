@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class UnknownIdException extends RuntimeException {
 
   public UnknownIdException(final String id) {
-    super("The ID " + id + " does not exist");
+    super("the ID " + id + " does not exist");
   }
 
 }

@@ -7,7 +7,7 @@ package ghastlith.indexer.http.exception;
 public class HttpErrorResponseException extends RuntimeException {
 
   public HttpErrorResponseException(final Integer code) {
-    super("There was an error " + code + " with the HTTP Request");
+    super("there was an error " + code + " with the HTTP Request");
   }
 
 }
