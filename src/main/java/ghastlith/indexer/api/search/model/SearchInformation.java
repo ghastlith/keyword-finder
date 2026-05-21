@@ -21,7 +21,7 @@ public class SearchInformation {
   private boolean done = false;
   private final Map<String, Boolean> urls = new ConcurrentHashMap<>();
 
-  private static final String SEARCH_LOG_TEMPLATE = "search %s found %s in %d url(s)";
+  private static final String SEARCH_LOG_FORMAT = "search %s found %s in %d url(s)";
 
   /**
    * Converts the search status to a user readable string.
@@ -61,7 +61,7 @@ public class SearchInformation {
    */
   public String toLogMessage() {
     final var quantity = getUrlsKeywordFoundList().size();
-    final var message = String.format(SEARCH_LOG_TEMPLATE, id, keyword, quantity);
+    final var message = String.format(SEARCH_LOG_FORMAT, id, keyword, quantity);
 
     return message;
   }
