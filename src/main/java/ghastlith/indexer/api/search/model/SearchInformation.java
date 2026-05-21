@@ -46,7 +46,7 @@ public class SearchInformation {
    * @return A sorted list containing urls.
    */
   public List<String> getUrlsKeywordFoundList() {
-    return this.urls.entrySet()
+    return urls.entrySet()
         .stream()
         .filter(Entry::getValue)
         .map(Entry::getKey)
@@ -61,7 +61,7 @@ public class SearchInformation {
    */
   public String toLogMessage() {
     final var quantity = getUrlsKeywordFoundList().size();
-    final var message = String.format(SEARCH_LOG_TEMPLATE, this.id, this.keyword, quantity);
+    final var message = String.format(SEARCH_LOG_TEMPLATE, id, keyword, quantity);
 
     return message;
   }
