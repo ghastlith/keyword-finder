@@ -32,6 +32,8 @@ public class HttpRequestSender {
    *
    * @param url the desired url to make the request
    * @return A list of strings.
+   * @throws InvalidURLException        If request URL has invalid syntax.
+   * @throws HttpErrorResponseException If the request fails or returned non-2xx.
    */
   public List<String> doGetRequest(final String url) {
     final var uri = buildUri(url);

@@ -69,6 +69,7 @@ public class SearchService {
    *
    * @param id the id of the desired search information
    * @return The user readable data of the search information.
+   * @throws UnknownIdException If id does not exist on current searches.
    */
   public SingleDisplayResponse displaySearch(final String id) {
     if (!IdUtilities.idExists(searches, id)) {
