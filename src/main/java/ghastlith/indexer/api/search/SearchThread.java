@@ -23,7 +23,8 @@ public class SearchThread implements Runnable {
   private final String currentUrl;
   private final HttpRequestSender httpRequestSender;
 
-  private static final Pattern URL_REGEX_PATTERN = Pattern.compile("<a\\s+(?:[^>]*?\\s+)?href=([\"'])((?!\").*?)\\1", CASE_INSENSITIVE);
+  private static final String URL_REGEX = "<a\\s+(?:[^>]*?\\s+)?href=([\"'])((?!\").*?)\\1";
+  private static final Pattern URL_PATTERN = Pattern.compile(URL_REGEX, CASE_INSENSITIVE);
 
   /**
    * The runnable method to search for the desired informations on the web page.
@@ -51,7 +52,7 @@ public class SearchThread implements Runnable {
   }
 
   private void searchForNewUrls(final String line) {
-    final var matcher = URL_REGEX_PATTERN.matcher(line);
+    final var matcher = URL_PATTERN.matcher(line);
     final var baseUrl = information.getBaseurl();
 
     while (matcher.find()) {
