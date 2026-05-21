@@ -6,35 +6,22 @@ import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 /**
  * The information of the user search.
  */
 @Getter
+@RequiredArgsConstructor
 public class SearchInformation {
 
-  private String id;
-  private String keyword;
-  private String baseurl;
-  private Boolean done;
-  private Map<String, Boolean> urls;
+  private final String id;
+  private final String keyword;
+  private final String baseurl;
+  private boolean done = false;
+  private final Map<String, Boolean> urls = new ConcurrentHashMap<>();
 
-  private static final String SEARCH_INFORMATION_LOG_TEMPLATE = "search %s found %s in %d url(s)";
-
-  /**
-   * Builds a new SearchInformation object based on the user's input.
-   *
-   * @param id      the generated ID
-   * @param keyword the word to be searched
-   * @param baseurl the base url of the website
-   */
-  public SearchInformation(final String id, final String keyword, final String baseurl) {
-    this.id = id;
-    this.keyword = keyword;
-    this.baseurl = baseurl;
-    this.done = false;
-    this.urls = new ConcurrentHashMap<>();
-  }
+  private static final String SEARCH_LOG_TEMPLATE = "search %s found %s in %d url(s)";
 
   /**
    * Converts the search status to a user readable string.
@@ -42,14 +29,14 @@ public class SearchInformation {
    * @return The search status converted to a string.
    */
   public String getDone() {
-    return this.done ? "done" : "running";
+    return done ? "done" : "running";
   }
 
   /**
    * Updates the search status to done.
    */
   public void markAsDone() {
-    this.done = true;
+    done = true;
   }
 
   /**
@@ -74,7 +61,7 @@ public class SearchInformation {
    */
   public String toLogMessage() {
     final var quantity = getUrlsKeywordFoundList().size();
-    final var message = String.format(SEARCH_INFORMATION_LOG_TEMPLATE, this.id, this.keyword, quantity);
+    final var message = String.format(SEARCH_LOG_TEMPLATE, this.id, this.keyword, quantity);
 
     return message;
   }
