@@ -1,6 +1,5 @@
 package ghastlith.indexer.api.search.model;
 
-import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -119,7 +118,7 @@ public class SearchInformationTest {
     searchInformation.getUrls().put(url2, false);
     searchInformation.getUrls().put(url1, true);
 
-    final var expectedMessage = format("search %s found %s in 2 url(s)", ID, KEYWORD);
+    final var expectedMessage = String.format("search %s found %s in 2 url(s)", ID, KEYWORD);
 
     // when
     final var message = searchInformation.toLogMessage();

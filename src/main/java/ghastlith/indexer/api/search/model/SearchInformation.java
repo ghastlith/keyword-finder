@@ -1,7 +1,5 @@
 package ghastlith.indexer.api.search.model;
 
-import static java.lang.String.format;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -63,7 +61,7 @@ public class SearchInformation {
    */
   public String toLogMessage() {
     final var quantity = getUrlsKeywordFoundList().size();
-    final var message = format(SEARCH_LOG_FORMAT, id, keyword, quantity);
+    final var message = String.format(SEARCH_LOG_FORMAT, id, keyword, quantity);
 
     return message;
   }
