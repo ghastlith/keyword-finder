@@ -118,7 +118,7 @@ public class SearchInformationTest {
     searchInformation.getUrls().put(url2, false);
     searchInformation.getUrls().put(url1, true);
 
-    final var expectedMessage = String.format("search %s found %s in 2 url(s)", ID, KEYWORD);
+    final var expectedMessage = "search %s found %s in 2 url(s)".formatted(ID, KEYWORD);
 
     // when
     final var message = searchInformation.toLogMessage();

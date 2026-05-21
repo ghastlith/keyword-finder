@@ -61,7 +61,7 @@ public class SearchInformation {
    */
   public String toLogMessage() {
     final var quantity = getUrlsKeywordFoundList().size();
-    final var message = String.format(SEARCH_LOG_FORMAT, id, keyword, quantity);
+    final var message = SEARCH_LOG_FORMAT.formatted(id, keyword, quantity);
 
     return message;
   }
