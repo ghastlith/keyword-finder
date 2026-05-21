@@ -1,7 +1,5 @@
 package ghastlith.indexer.api.search.model;
 
-import static java.util.stream.Collectors.toUnmodifiableList;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -66,7 +64,7 @@ public class SearchInformation {
         .filter(Entry::getValue)
         .map(Entry::getKey)
         .sorted()
-        .collect(toUnmodifiableList());
+        .toList();
   }
 
   /**

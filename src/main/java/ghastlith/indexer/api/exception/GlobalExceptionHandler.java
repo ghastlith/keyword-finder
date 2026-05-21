@@ -1,7 +1,6 @@
 package ghastlith.indexer.api.exception;
 
 import static java.time.Instant.now;
-import static java.util.stream.Collectors.toUnmodifiableList;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 import org.springframework.validation.FieldError;
@@ -34,7 +33,7 @@ public class GlobalExceptionHandler {
         .getFieldErrors()
         .stream()
         .map(FieldError::getDefaultMessage)
-        .collect(toUnmodifiableList());
+        .toList();
     final var path = request.getRequestURI();
 
     return ErrorResponse.builder()
